@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xd.finaldesign.mapper.XdGoodsPosDao">
+  <resultMap id="BaseResultMap" type="com.xd.finaldesign.model.XdGoodsPos">
+    <id column="goods_pos_id" jdbcType="BIGINT" property="goodsPosId" />
+    <result column="good_id" jdbcType="BIGINT" property="goodId" />
+    <result column="capacity" jdbcType="INTEGER" property="capacity" />
+    <result column="utc_create" jdbcType="TIMESTAMP" property="utcCreate" />
+    <result column="utc_modified" jdbcType="TIMESTAMP" property="utcModified" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    goods_pos_id, good_id, capacity, utc_create, utc_modified
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from xd_goods_pos
+    where goods_pos_id = #{goodsPosId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from xd_goods_pos
+    where goods_pos_id = #{goodsPosId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="goods_pos_id" keyProperty="goodsPosId" parameterType="com.xd.finaldesign.model.XdGoodsPos" useGeneratedKeys="true">
+    insert into xd_goods_pos (good_id, capacity, utc_create, 
+      utc_modified)
+    values (#{goodId,jdbcType=BIGINT}, #{capacity,jdbcType=INTEGER}, #{utcCreate,jdbcType=TIMESTAMP}, 
+      #{utcModified,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="goods_pos_id" keyProperty="goodsPosId" parameterType="com.xd.finaldesign.model.XdGoodsPos" useGeneratedKeys="true">
+    insert into xd_goods_pos
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="goodId != null">
+        good_id,
+      </if>
+      <if test="capacity != null">
+        capacity,
+      </if>
+      <if test="utcCreate != null">
+        utc_create,
+      </if>
+      <if test="utcModified != null">
+        utc_modified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="goodId != null">
+        #{goodId,jdbcType=BIGINT},
+      </if>
+      <if test="capacity != null">
+        #{capacity,jdbcType=INTEGER},
+      </if>
+      <if test="utcCreate != null">
+        #{utcCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="utcModified != null">
+        #{utcModified,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xd.finaldesign.model.XdGoodsPos">
+    update xd_goods_pos
+    <set>
+      <if test="goodId != null">
+        good_id = #{goodId,jdbcType=BIGINT},
+      </if>
+      <if test="capacity != null">
+        capacity = #{capacity,jdbcType=INTEGER},
+      </if>
+      <if test="utcCreate != null">
+        utc_create = #{utcCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="utcModified != null">
+        utc_modified = #{utcModified,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where goods_pos_id = #{goodsPosId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xd.finaldesign.model.XdGoodsPos">
+    update xd_goods_pos
+    set good_id = #{goodId,jdbcType=BIGINT},
+      capacity = #{capacity,jdbcType=INTEGER},
+      utc_create = #{utcCreate,jdbcType=TIMESTAMP},
+      utc_modified = #{utcModified,jdbcType=TIMESTAMP}
+    where goods_pos_id = #{goodsPosId,jdbcType=BIGINT}
+  </update>
+</mapper>

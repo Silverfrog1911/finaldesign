@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xd.finaldesign.mapper.XdGoodsDao">
+  <resultMap id="BaseResultMap" type="com.xd.finaldesign.model.XdGoods">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="amount" jdbcType="INTEGER" property="amount" />
+    <result column="receipt_id" jdbcType="BIGINT" property="receiptId" />
+    <result column="store_id" jdbcType="BIGINT" property="storeId" />
+    <result column="receipts_date" jdbcType="TIMESTAMP" property="receiptsDate" />
+    <result column="utc_create" jdbcType="TIMESTAMP" property="utcCreate" />
+    <result column="utc_modified" jdbcType="TIMESTAMP" property="utcModified" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, `name`, amount, receipt_id, store_id, receipts_date, utc_create, utc_modified
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from xd_goods
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from xd_goods
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.xd.finaldesign.model.XdGoods" useGeneratedKeys="true">
+    insert into xd_goods (`name`, amount, receipt_id, 
+      store_id, receipts_date, utc_create, 
+      utc_modified)
+    values (#{name,jdbcType=VARCHAR}, #{amount,jdbcType=INTEGER}, #{receiptId,jdbcType=BIGINT}, 
+      #{storeId,jdbcType=BIGINT}, #{receiptsDate,jdbcType=TIMESTAMP}, #{utcCreate,jdbcType=TIMESTAMP}, 
+      #{utcModified,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.xd.finaldesign.model.XdGoods" useGeneratedKeys="true">
+    insert into xd_goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="receiptId != null">
+        receipt_id,
+      </if>
+      <if test="storeId != null">
+        store_id,
+      </if>
+      <if test="receiptsDate != null">
+        receipts_date,
+      </if>
+      <if test="utcCreate != null">
+        utc_create,
+      </if>
+      <if test="utcModified != null">
+        utc_modified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="receiptId != null">
+        #{receiptId,jdbcType=BIGINT},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="receiptsDate != null">
+        #{receiptsDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="utcCreate != null">
+        #{utcCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="utcModified != null">
+        #{utcModified,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xd.finaldesign.model.XdGoods">
+    update xd_goods
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="receiptId != null">
+        receipt_id = #{receiptId,jdbcType=BIGINT},
+      </if>
+      <if test="storeId != null">
+        store_id = #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="receiptsDate != null">
+        receipts_date = #{receiptsDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="utcCreate != null">
+        utc_create = #{utcCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="utcModified != null">
+        utc_modified = #{utcModified,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xd.finaldesign.model.XdGoods">
+    update xd_goods
+    set `name` = #{name,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=INTEGER},
+      receipt_id = #{receiptId,jdbcType=BIGINT},
+      store_id = #{storeId,jdbcType=BIGINT},
+      receipts_date = #{receiptsDate,jdbcType=TIMESTAMP},
+      utc_create = #{utcCreate,jdbcType=TIMESTAMP},
+      utc_modified = #{utcModified,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

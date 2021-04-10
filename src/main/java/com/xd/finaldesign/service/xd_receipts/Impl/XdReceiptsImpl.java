@@ -6,10 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.xd.finaldesign.model.*;
 
+import java.util.List;
+
 @Service
 public class XdReceiptsImpl implements XdReceiptsSer {
 
     @Autowired
-    private XdGoodsDao xdGoodsDao;
+    private XdReceiptsSer xdReceiptsSer;
 
+
+    @Override
+    public List<XdReceipts> selectAllReceipts() {
+        return xdReceiptsSer.selectAllReceipts();
+    }
 }

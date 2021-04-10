@@ -1,7 +1,10 @@
 package com.xd.finaldesign.mapper;
 
 import com.xd.finaldesign.model.XdReceipts;
+import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+@Mapper
 public interface XdReceiptsDao {
     int deleteByPrimaryKey(Long id);
 
@@ -14,4 +17,6 @@ public interface XdReceiptsDao {
     int updateByPrimaryKeySelective(XdReceipts record);
 
     int updateByPrimaryKey(XdReceipts record);
+
+    List<XdReceipts> selectAllReceipts();
 }

@@ -95,4 +95,11 @@
       utc_modified = #{utcModified,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <select id="selectAllReceipts" resultMap="BaseResultMap">
+    select
+    *
+    from xd_receipts
+  </select>
+
 </mapper>

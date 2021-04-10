@@ -1,7 +1,10 @@
 package com.xd.finaldesign.mapper;
 
 import com.xd.finaldesign.model.XdGoods;
+import com.xd.finaldesign.model.XdReceipts;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 @Mapper
 public interface XdGoodsDao {
@@ -16,4 +19,5 @@ public interface XdGoodsDao {
     int updateByPrimaryKeySelective(XdGoods record);
 
     int updateByPrimaryKey(XdGoods record);
+
 }

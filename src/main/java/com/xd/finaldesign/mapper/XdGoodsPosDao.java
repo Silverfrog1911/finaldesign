@@ -1,7 +1,9 @@
 package com.xd.finaldesign.mapper;
 
 import com.xd.finaldesign.model.XdGoodsPos;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface XdGoodsPosDao {
     int deleteByPrimaryKey(Long goodsPosId);
 

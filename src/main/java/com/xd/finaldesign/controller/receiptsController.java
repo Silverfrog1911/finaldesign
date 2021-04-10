@@ -18,6 +18,7 @@ public class receiptsController {
     private XdReceiptsSer xdReceiptsSer;
 
     @GetMapping("/selectAll")
-    private ResultVO selectAllreceipts(){return ResultUtils.success(xdReceiptsSer.selectAllReceipts()); }
+    private ResultVO selectAllreceipts(){
+        return ResultUtils.success(xdReceiptsSer.selectAllReceipts()); }
 
 }

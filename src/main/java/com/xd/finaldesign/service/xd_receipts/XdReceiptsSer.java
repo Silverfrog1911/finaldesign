@@ -6,10 +6,17 @@ import java.util.List;
 
 public interface XdReceiptsSer {
 
-    /**
-     * 查询某全部收货单
-     * @return
-     */
+
     List<XdReceipts> selectAllReceipts();
+
+    int insert(XdReceipts record);
+
+    void updateStatusByGoodReceiptsId(Long id);
+
+    List<XdReceipts> selectAllWORK();
+
+    List<XdReceipts> selectAllCHECKING();
+
+    List<XdReceipts> selectAllGRECEVIED();
 
 }

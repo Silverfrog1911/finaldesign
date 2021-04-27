@@ -20,4 +20,8 @@ public interface XdGoodsDao {
 
     int updateByPrimaryKey(XdGoods record);
 
+    List<XdGoods> selectAll();
+
+    XdGoods selectGoodByGoodResId(int resid);
+
 }

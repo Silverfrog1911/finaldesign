@@ -19,4 +19,14 @@ public interface XdReceiptsDao {
     int updateByPrimaryKey(XdReceipts record);
 
     List<XdReceipts> selectAllReceipts();
+
+    void updateStatusByGoodReceiptsId(Long id);
+
+    List<XdReceipts> selectAllWORK();
+
+    List<XdReceipts> selectAllCHECKING();
+
+    List<XdReceipts> selectAllGRECEVIED();
+
+
 }

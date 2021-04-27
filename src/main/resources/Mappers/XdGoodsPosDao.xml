@@ -17,6 +17,25 @@
     from xd_goods_pos
     where goods_pos_id = #{goodsPosId,jdbcType=BIGINT}
   </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from xd_goods_pos
+  </select>
+
+  <select id="selectByGoodId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from xd_goods_pos
+    where good_id = #{goodId,jdbcType=BIGINT}
+  </select>
+  <select id="selectGoodPosIdByGoodIdAndGoodCap" resultType="java.lang.Integer">
+    select
+    <include refid="Base_Column_List" />
+    from xd_goods_pos
+    where good_id = #{goodId,jdbcType=BIGINT} AND capacity = #{capacity,jdbcType=INTEGER}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from xd_goods_pos
     where goods_pos_id = #{goodsPosId,jdbcType=BIGINT}
@@ -83,5 +102,12 @@
       utc_create = #{utcCreate,jdbcType=TIMESTAMP},
       utc_modified = #{utcModified,jdbcType=TIMESTAMP}
     where goods_pos_id = #{goodsPosId,jdbcType=BIGINT}
+  </update>
+  <update id="UpdateGoodsByGoodId">
+    update xd_goods_pos
+    set capacity = #{capacity,jdbcType=INTEGER},
+      utc_create = #{utcCreate,jdbcType=TIMESTAMP},
+      utc_modified = #{utcModified,jdbcType=TIMESTAMP}
+    where good_id = #{goodId,jdbcType=BIGINT}
   </update>
 </mapper>

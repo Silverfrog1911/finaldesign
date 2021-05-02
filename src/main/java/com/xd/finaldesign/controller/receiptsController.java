@@ -9,6 +9,7 @@ import com.xd.finaldesign.util.ResultVO;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -50,7 +51,7 @@ public class receiptsController {
         for(int i = 0;i<xdReceiptsSer.selectAllReceipts().size();i++){
             GoodsInfoAndRes goodsInfoAndRes = new GoodsInfoAndRes();
             goodsInfoAndRes.setGoodAmount(xdReceiptsSer.selectAllReceipts().get(i).getGoodAmount());
-            goodsInfoAndRes.setId(xdReceiptsSer.selectAllReceipts().get(i).getId());
+            goodsInfoAndRes.setId((long) Math.toIntExact(xdReceiptsSer.selectAllReceipts().get(i).getId()));
             goodsInfoAndRes.setName(xdGoodsSer.selectGoodByGoodresId(Math.toIntExact(xdReceiptsSer.selectAllReceipts().get(i).getId())).getName());
             goodsInfoAndRes.setReceiptsDate(xdReceiptsSer.selectAllReceipts().get(i).getReceiptsDate());
             goodsInfoAndRes.setStatus(xdReceiptsSer.selectAllReceipts().get(i).getStatus());
@@ -72,13 +73,13 @@ public class receiptsController {
 
         for(int i = 0;i<xdReceiptsSer.selectAllWORK().size();i++){
             GoodsInfoAndRes goodsInfoAndRes = new GoodsInfoAndRes();
-            goodsInfoAndRes.setGoodAmount(xdReceiptsSer.selectAllWORK().get(i).getGoodAmount());
-            goodsInfoAndRes.setId(xdReceiptsSer.selectAllWORK().get(i).getId());
-            goodsInfoAndRes.setName(xdGoodsSer.selectGoodByGoodresId(Math.toIntExact(xdReceiptsSer.selectAllWORK().get(i).getId())).getName());
-            goodsInfoAndRes.setReceiptsDate(xdReceiptsSer.selectAllWORK().get(i).getReceiptsDate());
-            goodsInfoAndRes.setStatus(xdReceiptsSer.selectAllWORK().get(i).getStatus());
-            goodsInfoAndRes.setUtcCreate(xdReceiptsSer.selectAllWORK().get(i).getUtcCreate());
-            goodsInfoAndRes.setUtcModified(xdReceiptsSer.selectAllWORK().get(i).getUtcModified());
+            goodsInfoAndRes.setGoodAmount(xdReceiptsSer.selectAllReceipts().get(i).getGoodAmount());
+            goodsInfoAndRes.setId((long) Math.toIntExact(xdReceiptsSer.selectAllReceipts().get(i).getId()));
+            goodsInfoAndRes.setName(xdGoodsSer.selectGoodByGoodresId(Math.toIntExact(xdReceiptsSer.selectAllReceipts().get(i).getId())).getName());
+            goodsInfoAndRes.setReceiptsDate(xdReceiptsSer.selectAllReceipts().get(i).getReceiptsDate());
+            goodsInfoAndRes.setStatus(xdReceiptsSer.selectAllReceipts().get(i).getStatus());
+            goodsInfoAndRes.setUtcCreate(xdReceiptsSer.selectAllReceipts().get(i).getUtcCreate());
+            goodsInfoAndRes.setUtcModified(xdReceiptsSer.selectAllReceipts().get(i).getUtcModified());
             goodsInfoAndResList.add(goodsInfoAndRes);
         }
 
@@ -86,7 +87,7 @@ public class receiptsController {
     }
 
     /**
-     *展示selectCHECKING货物信息
+     *展示CHECKING货物信息
      * @return
      */
     @GetMapping("/selectCHECKING")
@@ -95,13 +96,13 @@ public class receiptsController {
 
         for(int i = 0;i<xdReceiptsSer.selectAllCHECKING().size();i++){
             GoodsInfoAndRes goodsInfoAndRes = new GoodsInfoAndRes();
-            goodsInfoAndRes.setGoodAmount(xdReceiptsSer.selectAllCHECKING().get(i).getGoodAmount());
-            goodsInfoAndRes.setId(xdReceiptsSer.selectAllCHECKING().get(i).getId());
-            goodsInfoAndRes.setName(xdGoodsSer.selectGoodByGoodresId(Math.toIntExact(xdReceiptsSer.selectAllCHECKING().get(i).getId())).getName());
-            goodsInfoAndRes.setReceiptsDate(xdReceiptsSer.selectAllCHECKING().get(i).getReceiptsDate());
-            goodsInfoAndRes.setStatus(xdReceiptsSer.selectAllCHECKING().get(i).getStatus());
-            goodsInfoAndRes.setUtcCreate(xdReceiptsSer.selectAllCHECKING().get(i).getUtcCreate());
-            goodsInfoAndRes.setUtcModified(xdReceiptsSer.selectAllCHECKING().get(i).getUtcModified());
+            goodsInfoAndRes.setGoodAmount(xdReceiptsSer.selectAllReceipts().get(i).getGoodAmount());
+            goodsInfoAndRes.setId((long) Math.toIntExact(xdReceiptsSer.selectAllReceipts().get(i).getId()));
+            goodsInfoAndRes.setName(xdGoodsSer.selectGoodByGoodresId(Math.toIntExact(xdReceiptsSer.selectAllReceipts().get(i).getId())).getName());
+            goodsInfoAndRes.setReceiptsDate(xdReceiptsSer.selectAllReceipts().get(i).getReceiptsDate());
+            goodsInfoAndRes.setStatus(xdReceiptsSer.selectAllReceipts().get(i).getStatus());
+            goodsInfoAndRes.setUtcCreate(xdReceiptsSer.selectAllReceipts().get(i).getUtcCreate());
+            goodsInfoAndRes.setUtcModified(xdReceiptsSer.selectAllReceipts().get(i).getUtcModified());
             goodsInfoAndResList.add(goodsInfoAndRes);
         }
 
@@ -109,7 +110,7 @@ public class receiptsController {
     }
 
     /**
-     *展示selectRECEIVED货物信息
+     *展示RECEIVED货物信息
      * @return
      */
     @GetMapping("/selectRECEIVED")
@@ -118,17 +119,20 @@ public class receiptsController {
 
         for(int i = 0;i<xdReceiptsSer.selectAllGRECEVIED().size();i++){
             GoodsInfoAndRes goodsInfoAndRes = new GoodsInfoAndRes();
-            goodsInfoAndRes.setGoodAmount(xdReceiptsSer.selectAllGRECEVIED().get(i).getGoodAmount());
-            goodsInfoAndRes.setId(xdReceiptsSer.selectAllGRECEVIED().get(i).getId());
-            goodsInfoAndRes.setName(xdGoodsSer.selectGoodByGoodresId(Math.toIntExact(xdReceiptsSer.selectAllGRECEVIED().get(i).getId())).getName());
-            goodsInfoAndRes.setReceiptsDate(xdReceiptsSer.selectAllGRECEVIED().get(i).getReceiptsDate());
-            goodsInfoAndRes.setStatus(xdReceiptsSer.selectAllGRECEVIED().get(i).getStatus());
-            goodsInfoAndRes.setUtcCreate(xdReceiptsSer.selectAllGRECEVIED().get(i).getUtcCreate());
-            goodsInfoAndRes.setUtcModified(xdReceiptsSer.selectAllGRECEVIED().get(i).getUtcModified());
+            goodsInfoAndRes.setGoodAmount(xdReceiptsSer.selectAllReceipts().get(i).getGoodAmount());
+            goodsInfoAndRes.setId((long) Math.toIntExact(xdReceiptsSer.selectAllReceipts().get(i).getId()));
+            goodsInfoAndRes.setName(xdGoodsSer.selectGoodByGoodresId(Math.toIntExact(xdReceiptsSer.selectAllReceipts().get(i).getId())).getName());
+            goodsInfoAndRes.setReceiptsDate(xdReceiptsSer.selectAllReceipts().get(i).getReceiptsDate());
+            goodsInfoAndRes.setStatus(xdReceiptsSer.selectAllReceipts().get(i).getStatus());
+            goodsInfoAndRes.setUtcCreate(xdReceiptsSer.selectAllReceipts().get(i).getUtcCreate());
+            goodsInfoAndRes.setUtcModified(xdReceiptsSer.selectAllReceipts().get(i).getUtcModified());
             goodsInfoAndResList.add(goodsInfoAndRes);
         }
 
         return ResultUtils.success(goodsInfoAndResList);
     }
+
+
+
 
 }

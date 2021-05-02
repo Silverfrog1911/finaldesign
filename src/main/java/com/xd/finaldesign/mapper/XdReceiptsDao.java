@@ -4,15 +4,16 @@ import com.xd.finaldesign.model.XdReceipts;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+
 @Mapper
 public interface XdReceiptsDao {
-    int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(Integer id);
 
     int insert(XdReceipts record);
 
     int insertSelective(XdReceipts record);
 
-    XdReceipts selectByPrimaryKey(Long id);
+    XdReceipts selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(XdReceipts record);
 
@@ -22,11 +23,14 @@ public interface XdReceiptsDao {
 
     void updateStatusByGoodReceiptsId(Long id);
 
+    void updateStatusByGoodsId(int id);
+
     List<XdReceipts> selectAllWORK();
 
     List<XdReceipts> selectAllCHECKING();
 
     List<XdReceipts> selectAllGRECEVIED();
 
+    XdReceipts selectResByGoodId(int good_id);
 
 }

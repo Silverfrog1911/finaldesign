@@ -13,6 +13,8 @@ public interface XdGoodsSer {
 
     List<XdGoods> selectAll();
 
+
     XdGoods selectGoodByGoodresId(int resid);
+    XdGoods selectGoodByGoodresName(String name);
 
 }

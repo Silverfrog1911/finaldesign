@@ -1,7 +1,6 @@
 package com.xd.finaldesign.mapper;
 
 import com.xd.finaldesign.model.XdGoods;
-import com.xd.finaldesign.model.XdReceipts;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -23,5 +22,7 @@ public interface XdGoodsDao {
     List<XdGoods> selectAll();
 
     XdGoods selectGoodByGoodResId(int resid);
+
+    XdGoods selectGoodByGoodresName(String name);
 
 }

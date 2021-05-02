@@ -1,6 +1,7 @@
 package com.xd.finaldesign.controller;
 
 import com.xd.finaldesign.model.XdGoods;
+import com.xd.finaldesign.model.XdReceipts;
 import com.xd.finaldesign.service.xd_goods.XdGoodsSer;
 import com.xd.finaldesign.service.xd_goods_pos.XdGoodsPosSer;
 import com.xd.finaldesign.service.xd_receipts.XdReceiptsSer;
@@ -9,6 +10,7 @@ import com.xd.finaldesign.util.ResultVO;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -46,6 +48,23 @@ public class goodsController {
     }
 
 
+    /**
+     * 收货授权=插入数据库中收货单表新的一条数据（status=WORK）
+     */
+    @PostMapping("insertWORK")
+    private ResultVO insertWORK(XdGoods xdGoods){
+
+        xdGoodsSer.insertSelective(xdGoods);//插入基本的货物信息
+        //Math.toIntExact()
+        XdReceipts xdReceipts = new XdReceipts();
+        xdReceipts.setGoodId(Math.toIntExact(xdGoodsSer.selectGoodByGoodresName(xdGoods.getName()).getId()));
+        xdReceipts.setStatus("WORK");
+        xdReceipts.setGoodAmount(xdGoods.getAmount());
+
+        xdReceiptsSer.insert(xdReceipts);//插入收货单表一条信息
+
+        return ResultUtils.success("Insert Success !");
+    }
 
 
 }

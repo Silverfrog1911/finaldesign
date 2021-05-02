@@ -3,10 +3,10 @@ package com.xd.finaldesign.service.xd_receipts.Impl;
 import com.xd.finaldesign.mapper.XdGoodsDao;
 import com.xd.finaldesign.mapper.XdGoodsPosDao;
 import com.xd.finaldesign.mapper.XdReceiptsDao;
+import com.xd.finaldesign.model.XdReceipts;
 import com.xd.finaldesign.service.xd_receipts.XdReceiptsSer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.xd.finaldesign.model.*;
 
 import java.util.List;
 
@@ -59,6 +59,11 @@ public class XdReceiptsImpl implements XdReceiptsSer {
     @Override
     public List<XdReceipts> selectAllGRECEVIED() {
         return xdReceiptsDao.selectAllGRECEVIED();
+    }
+
+    @Override
+    public XdReceipts selectResByGoodId(int good_id) {
+        return xdReceiptsDao.selectResByGoodId(good_id);
     }
 
 

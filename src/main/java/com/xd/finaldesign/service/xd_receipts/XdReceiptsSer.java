@@ -19,4 +19,7 @@ public interface XdReceiptsSer {
 
     List<XdReceipts> selectAllGRECEVIED();
 
+    XdReceipts selectResByGoodId(int good_id);
+
+
 }

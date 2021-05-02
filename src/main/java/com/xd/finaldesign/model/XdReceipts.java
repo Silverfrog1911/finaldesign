@@ -15,7 +15,7 @@ public class XdReceipts implements Serializable {
     /**
      * 进货单id
      */
-    private Long id;
+    private Integer id;
 
     /**
      * 此单进货数量
@@ -35,6 +35,8 @@ public class XdReceipts implements Serializable {
     private Date utcCreate;
 
     private Date utcModified;
+
+    private Integer goodId;
 
     private static final long serialVersionUID = 1L;
 }

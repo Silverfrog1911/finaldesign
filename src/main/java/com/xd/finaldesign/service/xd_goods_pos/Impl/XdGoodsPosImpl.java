@@ -76,5 +76,10 @@ public class XdGoodsPosImpl implements XdGoodsPosSer {
         return xdGoodsPosDao.deleteByPrimaryKey(goodsPosId);
     }
 
+    @Override
+    public void updatePosInfos(int goods_pos_id, int capacity) {
+        xdGoodsPosDao.updatePosInfos(goods_pos_id,capacity);
+    }
+
 
 }

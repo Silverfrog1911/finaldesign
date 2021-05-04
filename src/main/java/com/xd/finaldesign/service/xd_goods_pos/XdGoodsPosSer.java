@@ -18,4 +18,6 @@ public interface XdGoodsPosSer {
 
     int deleteByPrimaryKey(Long goodsPosId);
 
+    void updatePosInfos(int goods_pos_id,int capacity);
+
 }

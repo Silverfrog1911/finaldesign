@@ -27,4 +27,6 @@ public interface XdGoodsPosDao {
 
     int selectGoodPosIdByGoodIdAndGoodCap(int good_id,int capacity);
 
+    void updatePosInfos(int goods_pos_id,int capacity);
+
 }

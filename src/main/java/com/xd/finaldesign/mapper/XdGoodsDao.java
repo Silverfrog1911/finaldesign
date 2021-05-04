@@ -25,4 +25,8 @@ public interface XdGoodsDao {
 
     XdGoods selectGoodByGoodresName(String name);
 
+    XdGoods selectGoodByGoodId(int good_id);
+
+
+
 }

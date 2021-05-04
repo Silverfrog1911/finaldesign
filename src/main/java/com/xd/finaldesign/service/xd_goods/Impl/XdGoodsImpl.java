@@ -41,6 +41,11 @@ public class XdGoodsImpl implements XdGoodsSer {
         return xdGoodsDao.selectAll();
     }
 
+    @Override
+    public XdGoods selectGoodByGoodId(int good_id) {
+        return xdGoodsDao.selectGoodByGoodId(good_id);
+    }
+
     /**
      * 根据收货表id查询货物信息
      * @param resid

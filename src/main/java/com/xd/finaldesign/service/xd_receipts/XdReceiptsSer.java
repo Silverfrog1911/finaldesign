@@ -21,5 +21,6 @@ public interface XdReceiptsSer {
 
     XdReceipts selectResByGoodId(int good_id);
 
+    void updateCheckingByGoodId(int good_id);
 
 }

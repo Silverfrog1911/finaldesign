@@ -24,25 +24,25 @@
     <include refid="Base_Column_List" />
     from xd_receipts
   </select>
-  <select id="selectAllWORK" resultType="com.xd.finaldesign.model.XdReceipts">
+  <select id="selectAllWORK" resultMap="BaseResultMap">
     select
     *
     from xd_receipts
     where `status` = 'WORK'
   </select>
-  <select id="selectAllCHECKING" resultType="com.xd.finaldesign.model.XdReceipts">
+  <select id="selectAllCHECKING" resultMap="BaseResultMap">
     select
     *
     from xd_receipts
     where `status` = 'CHECKING'
   </select>
-  <select id="selectAllGRECEVIED" resultType="com.xd.finaldesign.model.XdReceipts">
+  <select id="selectAllGRECEVIED" resultMap="BaseResultMap">
     select
     *
     from xd_receipts
-    where `status` = 'GRECEVIED'
+    where `status` = 'RECEVIED'
   </select>
-  <select id="selectResByGoodId" resultType="com.xd.finaldesign.model.XdReceipts">
+  <select id="selectResByGoodId" resultMap="BaseResultMap">
     select
     *
     from xd_receipts
@@ -145,6 +145,11 @@
   <update id="updateStatusByGoodsId">
     update xd_receipts
     set `status` = #{status,jdbcType=VARCHAR}
+    where good_id = #{goodId,jdbcType=INTEGER}
+  </update>
+  <update id="updateCheckingByGoodId">
+    update xd_receipts
+    set `status` = 'CHECKING'
     where good_id = #{goodId,jdbcType=INTEGER}
   </update>
 </mapper>

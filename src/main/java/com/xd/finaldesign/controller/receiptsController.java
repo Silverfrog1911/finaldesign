@@ -52,7 +52,7 @@ public class receiptsController {
             GoodsInfoAndRes goodsInfoAndRes = new GoodsInfoAndRes();
             goodsInfoAndRes.setGoodAmount(xdReceiptsSer.selectAllReceipts().get(i).getGoodAmount());
             goodsInfoAndRes.setId((long) Math.toIntExact(xdReceiptsSer.selectAllReceipts().get(i).getId()));
-            goodsInfoAndRes.setName(xdGoodsSer.selectGoodByGoodresId(Math.toIntExact(xdReceiptsSer.selectAllReceipts().get(i).getId())).getName());
+            goodsInfoAndRes.setName(xdGoodsSer.selectGoodByGoodId(xdReceiptsSer.selectAllReceipts().get(i).getGoodId()).getName());
             goodsInfoAndRes.setReceiptsDate(xdReceiptsSer.selectAllReceipts().get(i).getReceiptsDate());
             goodsInfoAndRes.setStatus(xdReceiptsSer.selectAllReceipts().get(i).getStatus());
             goodsInfoAndRes.setUtcCreate(xdReceiptsSer.selectAllReceipts().get(i).getUtcCreate());
@@ -73,13 +73,13 @@ public class receiptsController {
 
         for(int i = 0;i<xdReceiptsSer.selectAllWORK().size();i++){
             GoodsInfoAndRes goodsInfoAndRes = new GoodsInfoAndRes();
-            goodsInfoAndRes.setGoodAmount(xdReceiptsSer.selectAllReceipts().get(i).getGoodAmount());
-            goodsInfoAndRes.setId((long) Math.toIntExact(xdReceiptsSer.selectAllReceipts().get(i).getId()));
-            goodsInfoAndRes.setName(xdGoodsSer.selectGoodByGoodresId(Math.toIntExact(xdReceiptsSer.selectAllReceipts().get(i).getId())).getName());
-            goodsInfoAndRes.setReceiptsDate(xdReceiptsSer.selectAllReceipts().get(i).getReceiptsDate());
-            goodsInfoAndRes.setStatus(xdReceiptsSer.selectAllReceipts().get(i).getStatus());
-            goodsInfoAndRes.setUtcCreate(xdReceiptsSer.selectAllReceipts().get(i).getUtcCreate());
-            goodsInfoAndRes.setUtcModified(xdReceiptsSer.selectAllReceipts().get(i).getUtcModified());
+            goodsInfoAndRes.setGoodAmount(xdReceiptsSer.selectAllWORK().get(i).getGoodAmount());
+            goodsInfoAndRes.setId((long) Math.toIntExact(xdReceiptsSer.selectAllWORK().get(i).getId()));
+            goodsInfoAndRes.setName(xdGoodsSer.selectGoodByGoodId(xdReceiptsSer.selectAllWORK().get(i).getGoodId()).getName());
+            goodsInfoAndRes.setReceiptsDate(xdReceiptsSer.selectAllWORK().get(i).getReceiptsDate());
+            goodsInfoAndRes.setStatus(xdReceiptsSer.selectAllWORK().get(i).getStatus());
+            goodsInfoAndRes.setUtcCreate(xdReceiptsSer.selectAllWORK().get(i).getUtcCreate());
+            goodsInfoAndRes.setUtcModified(xdReceiptsSer.selectAllWORK().get(i).getUtcModified());
             goodsInfoAndResList.add(goodsInfoAndRes);
         }
 
@@ -96,13 +96,13 @@ public class receiptsController {
 
         for(int i = 0;i<xdReceiptsSer.selectAllCHECKING().size();i++){
             GoodsInfoAndRes goodsInfoAndRes = new GoodsInfoAndRes();
-            goodsInfoAndRes.setGoodAmount(xdReceiptsSer.selectAllReceipts().get(i).getGoodAmount());
-            goodsInfoAndRes.setId((long) Math.toIntExact(xdReceiptsSer.selectAllReceipts().get(i).getId()));
-            goodsInfoAndRes.setName(xdGoodsSer.selectGoodByGoodresId(Math.toIntExact(xdReceiptsSer.selectAllReceipts().get(i).getId())).getName());
-            goodsInfoAndRes.setReceiptsDate(xdReceiptsSer.selectAllReceipts().get(i).getReceiptsDate());
-            goodsInfoAndRes.setStatus(xdReceiptsSer.selectAllReceipts().get(i).getStatus());
-            goodsInfoAndRes.setUtcCreate(xdReceiptsSer.selectAllReceipts().get(i).getUtcCreate());
-            goodsInfoAndRes.setUtcModified(xdReceiptsSer.selectAllReceipts().get(i).getUtcModified());
+            goodsInfoAndRes.setGoodAmount(xdReceiptsSer.selectAllCHECKING().get(i).getGoodAmount());
+            goodsInfoAndRes.setId((long) Math.toIntExact(xdReceiptsSer.selectAllCHECKING().get(i).getId()));
+            goodsInfoAndRes.setName(xdGoodsSer.selectGoodByGoodId(xdReceiptsSer.selectAllCHECKING().get(i).getGoodId()).getName());
+            goodsInfoAndRes.setReceiptsDate(xdReceiptsSer.selectAllCHECKING().get(i).getReceiptsDate());
+            goodsInfoAndRes.setStatus(xdReceiptsSer.selectAllCHECKING().get(i).getStatus());
+            goodsInfoAndRes.setUtcCreate(xdReceiptsSer.selectAllCHECKING().get(i).getUtcCreate());
+            goodsInfoAndRes.setUtcModified(xdReceiptsSer.selectAllCHECKING().get(i).getUtcModified());
             goodsInfoAndResList.add(goodsInfoAndRes);
         }
 
@@ -119,20 +119,29 @@ public class receiptsController {
 
         for(int i = 0;i<xdReceiptsSer.selectAllGRECEVIED().size();i++){
             GoodsInfoAndRes goodsInfoAndRes = new GoodsInfoAndRes();
-            goodsInfoAndRes.setGoodAmount(xdReceiptsSer.selectAllReceipts().get(i).getGoodAmount());
-            goodsInfoAndRes.setId((long) Math.toIntExact(xdReceiptsSer.selectAllReceipts().get(i).getId()));
-            goodsInfoAndRes.setName(xdGoodsSer.selectGoodByGoodresId(Math.toIntExact(xdReceiptsSer.selectAllReceipts().get(i).getId())).getName());
-            goodsInfoAndRes.setReceiptsDate(xdReceiptsSer.selectAllReceipts().get(i).getReceiptsDate());
-            goodsInfoAndRes.setStatus(xdReceiptsSer.selectAllReceipts().get(i).getStatus());
-            goodsInfoAndRes.setUtcCreate(xdReceiptsSer.selectAllReceipts().get(i).getUtcCreate());
-            goodsInfoAndRes.setUtcModified(xdReceiptsSer.selectAllReceipts().get(i).getUtcModified());
+            goodsInfoAndRes.setGoodAmount(xdReceiptsSer.selectAllGRECEVIED().get(i).getGoodAmount());
+            goodsInfoAndRes.setId((long) Math.toIntExact(xdReceiptsSer.selectAllGRECEVIED().get(i).getId()));
+            goodsInfoAndRes.setName(xdGoodsSer.selectGoodByGoodId(xdReceiptsSer.selectAllGRECEVIED().get(i).getGoodId()).getName());
+            goodsInfoAndRes.setReceiptsDate(xdReceiptsSer.selectAllGRECEVIED().get(i).getReceiptsDate());
+            goodsInfoAndRes.setStatus(xdReceiptsSer.selectAllGRECEVIED().get(i).getStatus());
+            goodsInfoAndRes.setUtcCreate(xdReceiptsSer.selectAllGRECEVIED().get(i).getUtcCreate());
+            goodsInfoAndRes.setUtcModified(xdReceiptsSer.selectAllGRECEVIED().get(i).getUtcModified());
             goodsInfoAndResList.add(goodsInfoAndRes);
         }
 
         return ResultUtils.success(goodsInfoAndResList);
     }
 
-
-
+    /**
+     * 验货
+     * 收货验货=更新数据库中收货单表中收货单的状态为Checking
+     * @param goodId
+     * @return
+     */
+    @GetMapping("/updateCheckingByGoodId")
+    private ResultVO updateCheckingByGoodId(int goodId){
+        xdReceiptsSer.updateCheckingByGoodId(goodId);
+        return ResultUtils.success("update success!");
+    }
 
 }

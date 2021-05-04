@@ -3,8 +3,11 @@ package com.xd.finaldesign.controller;
 import com.xd.finaldesign.service.xd_goods.XdGoodsSer;
 import com.xd.finaldesign.service.xd_goods_pos.XdGoodsPosSer;
 import com.xd.finaldesign.service.xd_receipts.XdReceiptsSer;
+import com.xd.finaldesign.util.ResultUtils;
+import com.xd.finaldesign.util.ResultVO;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,6 +33,19 @@ public class goodsPosController {
 
     @Autowired
     private XdGoodsPosSer xdGoodsPosSer;
+
+    /**
+     * 货位更新=更新数据库中货位表中货物在某一位置的数量
+     * @param goodPosId
+     * @param capacity
+     * @return
+     */
+    @GetMapping("/updatePosInfos")
+    private ResultVO updatePosInfos(int goodPosId,int capacity){
+        xdGoodsPosSer.updatePosInfos(goodPosId,capacity);
+        return ResultUtils.success("update success!");
+    }
+
 
 
 }

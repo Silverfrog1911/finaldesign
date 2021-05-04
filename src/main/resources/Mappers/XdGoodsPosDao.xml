@@ -110,4 +110,9 @@
       utc_modified = #{utcModified,jdbcType=TIMESTAMP}
     where good_id = #{goodId,jdbcType=BIGINT}
   </update>
+  <update id="updatePosInfos">
+    update xd_goods_pos
+    set capacity = #{capacity,jdbcType=INTEGER}
+    where goods_pos_id = #{goodsPosId,jdbcType=BIGINT}
+  </update>
 </mapper>

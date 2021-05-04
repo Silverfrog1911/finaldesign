@@ -66,5 +66,10 @@ public class XdReceiptsImpl implements XdReceiptsSer {
         return xdReceiptsDao.selectResByGoodId(good_id);
     }
 
+    @Override
+    public void updateCheckingByGoodId(int good_id) {
+        xdReceiptsDao.updateCheckingByGoodId(good_id);
+    }
+
 
 }

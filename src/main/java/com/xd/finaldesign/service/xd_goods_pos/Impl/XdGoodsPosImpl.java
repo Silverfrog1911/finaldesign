@@ -81,5 +81,10 @@ public class XdGoodsPosImpl implements XdGoodsPosSer {
         xdGoodsPosDao.updatePosInfos(goods_pos_id,capacity);
     }
 
+    @Override
+    public void deleteByGoodId(int good_id) {
+        xdGoodsPosDao.deleteByGoodId(good_id);
+    }
+
 
 }

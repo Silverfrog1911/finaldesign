@@ -52,6 +52,10 @@
     delete from xd_receipts
     where id = #{id,jdbcType=INTEGER}
   </delete>
+  <delete id="deletGoodBygoodId">
+    delete from xd_receipts
+    where good_id = #{goodId,jdbcType=INTEGER}
+  </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.xd.finaldesign.model.XdReceipts" useGeneratedKeys="true">
     insert into xd_receipts (good_amount, receipts_date, `status`, 
       utc_create, utc_modified, good_id
@@ -137,12 +141,12 @@
       good_id = #{goodId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateStatusByGoodReceiptsId">
+  <update id="updateStatusByGoodReceiptsId" parameterType="java.lang.Integer">
     update xd_receipts
     set `status` = #{status,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateStatusByGoodsId">
+  <update id="updateStatusByGoodsId" parameterType="java.lang.Integer">
     update xd_receipts
     set `status` = #{status,jdbcType=VARCHAR}
     where good_id = #{goodId,jdbcType=INTEGER}
@@ -152,4 +156,20 @@
     set `status` = 'CHECKING'
     where good_id = #{goodId,jdbcType=INTEGER}
   </update>
+  <update id="updateReceivedByGoodId">
+    update xd_receipts
+    set `status` = 'RECEIVED'
+    where good_id = #{goodId,jdbcType=INTEGER}
+  </update>
+  <update id="updateStatus" parameterType="com.xd.finaldesign.model.XdReceipts">
+    update xd_receipts
+    set good_amount = #{goodAmount,jdbcType=INTEGER},
+      receipts_date = #{receiptsDate,jdbcType=TIMESTAMP},
+      `status` = #{status,jdbcType=VARCHAR},
+      utc_create = #{utcCreate,jdbcType=TIMESTAMP},
+      utc_modified = #{utcModified,jdbcType=TIMESTAMP}
+    where good_id = #{goodId,jdbcType=INTEGER}
+  </update>
+
+
 </mapper>

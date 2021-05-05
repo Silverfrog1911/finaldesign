@@ -20,4 +20,7 @@ public interface XdGoodsPosSer {
 
     void updatePosInfos(int goods_pos_id,int capacity);
 
+    void deleteByGoodId(int good_id);
+
+
 }

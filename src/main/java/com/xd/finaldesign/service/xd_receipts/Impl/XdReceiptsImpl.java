@@ -71,5 +71,22 @@ public class XdReceiptsImpl implements XdReceiptsSer {
         xdReceiptsDao.updateCheckingByGoodId(good_id);
     }
 
+    @Override
+    public void updateReceivedByGoodId(int good_id) {
+        System.out.println(good_id);
+        xdReceiptsDao.updateReceivedByGoodId(good_id);
+        System.out.println("SER");
+    }
+
+    @Override
+    public void updateStatus(XdReceipts xdReceipts) {
+        xdReceiptsDao.updateStatus(xdReceipts);
+    }
+
+    @Override
+    public void deletGoodBygoodId(int good_id) {
+        xdReceiptsDao.deletGoodBygoodId(good_id);
+    }
+
 
 }

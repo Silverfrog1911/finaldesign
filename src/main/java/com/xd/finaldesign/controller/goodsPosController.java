@@ -1,5 +1,8 @@
 package com.xd.finaldesign.controller;
 
+import com.xd.finaldesign.enums.PosCapEnum;
+import com.xd.finaldesign.model.XdGoodsPos;
+import com.xd.finaldesign.model.XdReceipts;
 import com.xd.finaldesign.service.xd_goods.XdGoodsSer;
 import com.xd.finaldesign.service.xd_goods_pos.XdGoodsPosSer;
 import com.xd.finaldesign.service.xd_receipts.XdReceiptsSer;
@@ -34,6 +37,9 @@ public class goodsPosController {
     @Autowired
     private XdGoodsPosSer xdGoodsPosSer;
 
+    PosCapEnum posCapEnum = PosCapEnum.CAPACITY;
+    int shelfCap = posCapEnum.getShelfcapacity();
+
     /**
      * 货位更新=更新数据库中货位表中货物在某一位置的数量
      * @param goodPosId
@@ -43,9 +49,69 @@ public class goodsPosController {
     @GetMapping("/updatePosInfos")
     private ResultVO updatePosInfos(int goodPosId,int capacity){
         xdGoodsPosSer.updatePosInfos(goodPosId,capacity);
+        if(capacity == 0){
+            xdGoodsPosSer.deleteByPrimaryKey((long) goodPosId);
+        }
         return ResultUtils.success("update success!");
     }
 
+    /**
+     * 收货确认=更新数据库中收货单表中收货单的状态为Received，
+     *         首先查询货位表中是否存在同类商品，
+     *         若存在则放置到已存在位置，
+     *         若不存在，分配新的位置，插入货位表一条新数据
+     * @param goodId
+     * @param capacity
+     * @return
+     */
+    @GetMapping("/Confirm")
+    private ResultVO Confim(int goodId,int capacity){
+
+        int shelfNeed = 0;//所需要的货架数
+
+        xdReceiptsSer.updateReceivedByGoodId(goodId);
+
+//        if((capacity/shelfCap)==0){//货量小于20
+//            shelfNeed = 1;
+//
+//            if((capacity%shelfCap)==0){
+//                return ResultUtils.success("Confirm Fail ! NO GOODS ! ");
+//            }
+//            if((capacity%shelfCap)!=0){
+//                XdGoodsPos xdGoodsPos = new XdGoodsPos();
+//                xdGoodsPos.setGoodId((long) goodId);
+//                xdGoodsPos.setCapacity(capacity);
+//                xdGoodsPosSer.insertSelective(xdGoodsPos);
+//            }
+//        }
+//        if((capacity/shelfCap)!=0){//货量大于20
+//            shelfNeed = capacity/20;
+//
+//            if((capacity%shelfCap)==0){
+//                for(int i = 0;i < shelfNeed;i++){
+//                    XdGoodsPos xdGoodsPos = new XdGoodsPos();
+//                    xdGoodsPos.setGoodId((long) goodId);
+//                    xdGoodsPosSer.insertSelective(xdGoodsPos);
+//                }
+//            }
+//            if((capacity%shelfCap)!=0){
+//                shelfNeed = shelfNeed + 1;
+//                for(int i = 0;i < shelfNeed;i++){
+//                    XdGoodsPos xdGoodsPos = new XdGoodsPos();
+//                    xdGoodsPos.setGoodId((long) goodId);
+//                    xdGoodsPosSer.insertSelective(xdGoodsPos);
+//                }
+//                XdGoodsPos xdGoodsPos = new XdGoodsPos();
+//                xdGoodsPos.setGoodId((long) goodId);
+//                xdGoodsPos.setCapacity(capacity%20);
+//                xdGoodsPosSer.insertSelective(xdGoodsPos);
+//            }
+//        }
+
+
+
+        return ResultUtils.success("Confirm Success !");
+    }
 
 
 }

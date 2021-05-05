@@ -23,4 +23,9 @@ public interface XdReceiptsSer {
 
     void updateCheckingByGoodId(int good_id);
 
+    void updateReceivedByGoodId(int good_id);
+
+    void updateStatus(XdReceipts xdReceipts);
+
+    void deletGoodBygoodId(int good_id);
 }

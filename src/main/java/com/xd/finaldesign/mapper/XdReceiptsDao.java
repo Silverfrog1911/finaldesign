@@ -2,6 +2,7 @@ package com.xd.finaldesign.mapper;
 
 import com.xd.finaldesign.model.XdReceipts;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -31,8 +32,14 @@ public interface XdReceiptsDao {
 
     List<XdReceipts> selectAllGRECEVIED();
 
-    XdReceipts selectResByGoodId(int good_id);
+    XdReceipts selectResByGoodId(int goodId);
 
-    void updateCheckingByGoodId(int good_id);
+    void updateCheckingByGoodId(@Param("goodId") int goodId);
+
+    void updateReceivedByGoodId(@Param("goodId") int goodId);
+
+    void updateStatus(XdReceipts xdReceipts);
+
+    void deletGoodBygoodId(int goodId);
 
 }

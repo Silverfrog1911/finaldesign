@@ -40,6 +40,10 @@
     delete from xd_goods_pos
     where goods_pos_id = #{goodsPosId,jdbcType=BIGINT}
   </delete>
+  <delete id="deleteByGoodId">
+    delete from xd_goods_pos
+    where good_id = #{goodId,jdbcType=BIGINT}
+  </delete>
   <insert id="insert" keyColumn="goods_pos_id" keyProperty="goodsPosId" parameterType="com.xd.finaldesign.model.XdGoodsPos" useGeneratedKeys="true">
     insert into xd_goods_pos (good_id, capacity, utc_create, 
       utc_modified)

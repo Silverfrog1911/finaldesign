@@ -11,3 +11,4 @@
  *
  * 货位更新=更新数据库中货位表中货物在某一位置的数量
  */
+UPDATE `xdFinal`.`xd_receipts` SET `id`='1', `good_amount`='15', `receipts_date`='2021-04-10 21:25:09', `status`='WORK', `utc_create`='2021-04-10 21:24:15', `utc_modified`='2021-05-05 10:12:34', `good_id`='1' WHERE (`id`='1');

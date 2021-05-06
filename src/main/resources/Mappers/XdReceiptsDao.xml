@@ -170,6 +170,11 @@
       utc_modified = #{utcModified,jdbcType=TIMESTAMP}
     where good_id = #{goodId,jdbcType=INTEGER}
   </update>
+  <update id="updateCheckingByGoodResId">
+    update xd_receipts
+    set `status` = 'CHECKING'
+    where id = #{id,jdbcType=INTEGER}
+  </update>
 
 
 </mapper>

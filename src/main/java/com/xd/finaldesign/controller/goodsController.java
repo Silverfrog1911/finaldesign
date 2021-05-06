@@ -9,14 +9,10 @@ import com.xd.finaldesign.util.ResultUtils;
 import com.xd.finaldesign.util.ResultVO;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/goods")
-@Api(tags = {""})
 public class goodsController {
 
     /**
@@ -37,7 +33,6 @@ public class goodsController {
     @Autowired
     private XdGoodsPosSer xdGoodsPosSer;
 
-
     /**
      *展示全部货物信息
      * @return
@@ -47,14 +42,21 @@ public class goodsController {
         return ResultUtils.success(xdGoodsSer.selectAll());
     }
 
-
     /**
      * 收货授权=插入数据库中收货单表新的一条数据（status=WORK）
      */
-    @PostMapping("insertWORK")
-    private ResultVO insertWORK(XdGoods xdGoods){
+    @PostMapping("/insertWORK1")
+    private ResultVO insertWORK(String name,int amount){
+
+        XdGoods xdGoods =new XdGoods();
+        xdGoods.setName(name);
+        xdGoods.setAmount(amount);
+        System.out.println("In USE !");
+        System.out.println("xdGoods : "+xdGoods.getName());
 
         xdGoodsSer.insertSelective(xdGoods);//插入基本的货物信息
+        xdGoodsSer.updateStoreIdByGId(Math.toIntExact(xdGoodsSer.selectGoodByGoodresName(xdGoods.getName()).getId()),Math.toIntExact(xdGoodsSer.selectGoodByGoodresName(xdGoods.getName()).getId()));
+
         //Math.toIntExact()
         XdReceipts xdReceipts = new XdReceipts();
         xdReceipts.setGoodId(Math.toIntExact(xdGoodsSer.selectGoodByGoodresName(xdGoods.getName()).getId()));

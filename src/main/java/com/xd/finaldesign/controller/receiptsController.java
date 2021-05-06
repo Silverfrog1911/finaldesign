@@ -135,12 +135,12 @@ public class receiptsController {
     /**
      * 验货
      * 收货验货=更新数据库中收货单表中收货单的状态为Checking
-     * @param goodId
+     * @param
      * @return
      */
-    @GetMapping("/updateCheckingByGoodId")
-    private ResultVO updateCheckingByGoodId(int goodId){
-        xdReceiptsSer.updateCheckingByGoodId(goodId);
+    @PostMapping("/updateCheckingByGoodResId")
+    private ResultVO updateCheckingByGoodId(int Id){
+        xdReceiptsSer.updateCheckingByGoodResId(Id);
         return ResultUtils.success("update success!");
     }
 

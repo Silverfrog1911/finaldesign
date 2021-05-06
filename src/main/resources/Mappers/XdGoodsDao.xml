@@ -142,6 +142,11 @@
       utc_modified = #{utcModified,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <update id="updateStoreIdByGId">
+    update xd_goods
+    set store_id = #{storeId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
 
 
 </mapper>

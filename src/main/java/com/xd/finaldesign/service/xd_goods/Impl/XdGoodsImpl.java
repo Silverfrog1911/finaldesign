@@ -61,5 +61,10 @@ public class XdGoodsImpl implements XdGoodsSer {
         return xdGoodsDao.selectGoodByGoodresName(name);
     }
 
+    @Override
+    public void updateStoreIdByGId(int good_id, int storeId) {
+        xdGoodsDao.updateStoreIdByGId(good_id,storeId);
+    }
+
 
 }

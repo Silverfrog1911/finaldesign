@@ -18,4 +18,6 @@ public interface XdGoodsSer {
     XdGoods selectGoodByGoodresId(int resid);
     XdGoods selectGoodByGoodresName(String name);
 
+    void updateStoreIdByGId(int good_id,int storeId);
+
 }

@@ -40,6 +40,8 @@ public interface XdReceiptsDao {
 
     void updateStatus(XdReceipts xdReceipts);
 
+    void updateCheckingByGoodResId(int id);
+
     void deletGoodBygoodId(int goodId);
 
 }

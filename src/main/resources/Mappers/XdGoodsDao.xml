@@ -148,5 +148,11 @@
     where id = #{id,jdbcType=BIGINT}
   </update>
 
+  <update id="updateResIdByGId">
+    update xd_goods
+    set receipt_id = #{receiptId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
 
 </mapper>

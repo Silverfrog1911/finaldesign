@@ -73,6 +73,9 @@ public class goodsPosController {
         if(capacity == 20){
             xdGoodsPosSer.deleteByPrimaryKey((long) goodPosId);
         }
+        if(capacity > 20){
+            return ResultUtils.success("Error !");
+        }
         return ResultUtils.success("update success!");
     }
 

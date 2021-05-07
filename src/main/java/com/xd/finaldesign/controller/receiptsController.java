@@ -1,6 +1,8 @@
 package com.xd.finaldesign.controller;
 
 import com.xd.finaldesign.model.Poly.GoodsInfoAndRes;
+import com.xd.finaldesign.model.XdGoods;
+import com.xd.finaldesign.model.XdReceipts;
 import com.xd.finaldesign.service.xd_goods.XdGoodsSer;
 import com.xd.finaldesign.service.xd_goods_pos.XdGoodsPosSer;
 import com.xd.finaldesign.service.xd_receipts.XdReceiptsSer;
@@ -142,6 +144,16 @@ public class receiptsController {
     private ResultVO updateCheckingByGoodId(int Id){
         xdReceiptsSer.updateCheckingByGoodResId(Id);
         return ResultUtils.success("update success!");
+    }
+
+
+    @PostMapping("/deleteByGoodResId")
+    private ResultVO deleteByGoodResId(int Id){
+        xdReceiptsSer.selectByPrimaryKey(Id);
+        xdGoodsSer.deleteByPrimaryKey((long) Id);
+
+        xdReceiptsSer.deleteByPrimaryKey(Id);
+        return ResultUtils.success("delete success!");
     }
 
 }

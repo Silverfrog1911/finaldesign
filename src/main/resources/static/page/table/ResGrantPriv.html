@@ -78,52 +78,6 @@
             return false;
         });
 
-
-        //监听表格复选框选择
-        table.on('checkbox(currentTableFilter)', function (obj) {
-            console.log(obj)
-        });
-
-        table.on('tool(currentTableFilter)', function (obj) {
-            var data = obj.data;
-            if (obj.event === 'edit') {
-
-                var index = layer.open({
-                    title: '课程审核',
-                    type: 2,
-                    shade: 0.2,
-                    maxmin:true,
-                    shadeClose: true,
-                    area: ['100%', '100%'],
-                    content: '../../page/table/apply_edit.html',
-                });
-                $(window).on("resize", function () {
-                    layer.full(index);
-                });
-                return false;
-            } else if (obj.event === 'delete') {
-                layer.confirm('真的删除行么', function (index) {
-
-                    $.ajax({
-                        url:'http://localhost:8080/courseInfo/deleteCourseInfo?id='+data['id'],
-                        method:'post',
-                        data:data.field,
-                        dataType:'JSON',
-                        success:function(res){
-                            layer.msg("删除成功!");
-                            table.reload('currentTableId', {
-                            }, 'data');
-                        },
-                        error: function(XMLHttpRequest, textStatus, errorThrown) {
-                            layer.msg("删除失败!");
-                        }
-                    }) ;
-
-                    return false;
-                });
-            }
-        });
-
     });
 </script>
 <script>

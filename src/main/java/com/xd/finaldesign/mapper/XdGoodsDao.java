@@ -27,7 +27,10 @@ public interface XdGoodsDao {
 
     XdGoods selectGoodByGoodId(int good_id);
 
-    void updateStoreIdByGId(int good_id,int storeId);
+    void updateStoreIdByGId(int id,int storeId);
+
+    void updateResIdByGId(int id,int receiptId);
+
 
 
 }

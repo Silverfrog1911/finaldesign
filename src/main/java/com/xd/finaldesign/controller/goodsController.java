@@ -45,17 +45,16 @@ public class goodsController {
     /**
      * 收货授权=插入数据库中收货单表新的一条数据（status=WORK）
      */
-    @PostMapping("/insertWORK1")
-    private ResultVO insertWORK(String name,int amount){
+    @PostMapping(value = "/insertWORKStatus")
+    private ResultVO insertWORK(XdGoods xdGoods){
 
-        XdGoods xdGoods =new XdGoods();
-        xdGoods.setName(name);
-        xdGoods.setAmount(amount);
         System.out.println("In USE !");
         System.out.println("xdGoods : "+xdGoods.getName());
 
         xdGoodsSer.insertSelective(xdGoods);//插入基本的货物信息
-        xdGoodsSer.updateStoreIdByGId(Math.toIntExact(xdGoodsSer.selectGoodByGoodresName(xdGoods.getName()).getId()),Math.toIntExact(xdGoodsSer.selectGoodByGoodresName(xdGoods.getName()).getId()));
+
+        int id = Math.toIntExact(xdGoodsSer.selectGoodByGoodresName(xdGoods.getName()).getId());
+        xdGoodsSer.updateStoreIdByGId(id ,id);
 
         //Math.toIntExact()
         XdReceipts xdReceipts = new XdReceipts();
@@ -64,6 +63,9 @@ public class goodsController {
         xdReceipts.setGoodAmount(xdGoods.getAmount());
 
         xdReceiptsSer.insert(xdReceipts);//插入收货单表一条信息
+
+        int resid = xdReceiptsSer.selectResByGoodId(id).getId();
+        xdGoodsSer.updateResIdByGId(id,resid);
 
         return ResultUtils.success("Insert Success !");
     }

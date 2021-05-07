@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface XdReceiptsSer {
 
+    XdReceipts selectByPrimaryKey(Integer id);
 
     List<XdReceipts> selectAllReceipts();
 
@@ -30,4 +31,6 @@ public interface XdReceiptsSer {
     void updateCheckingByGoodResId(int id);
 
     void deletGoodBygoodId(int good_id);
+
+    int deleteByPrimaryKey(Integer id);
 }

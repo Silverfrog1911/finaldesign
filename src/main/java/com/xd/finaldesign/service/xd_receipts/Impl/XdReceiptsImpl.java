@@ -22,6 +22,11 @@ public class XdReceiptsImpl implements XdReceiptsSer {
     @Autowired
     private XdReceiptsDao xdReceiptsDao;
 
+    @Override
+    public XdReceipts selectByPrimaryKey(Integer id) {
+        return xdReceiptsDao.selectByPrimaryKey(id);
+    }
+
     /**
      * 查询某全部收货单
      * @return
@@ -91,6 +96,12 @@ public class XdReceiptsImpl implements XdReceiptsSer {
     @Override
     public void deletGoodBygoodId(int good_id) {
         xdReceiptsDao.deletGoodBygoodId(good_id);
+    }
+
+    @Override
+    public int deleteByPrimaryKey(Integer id) {
+        xdReceiptsDao.deleteByPrimaryKey(id);
+        return 0;
     }
 
 

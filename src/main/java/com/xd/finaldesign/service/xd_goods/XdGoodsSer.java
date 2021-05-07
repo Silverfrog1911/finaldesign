@@ -9,6 +9,8 @@ import java.util.List;
 
 public interface XdGoodsSer {
 
+    int deleteByPrimaryKey(Long id);
+
     int insertSelective(XdGoods record);
 
     List<XdGoods> selectAll();
@@ -19,5 +21,7 @@ public interface XdGoodsSer {
     XdGoods selectGoodByGoodresName(String name);
 
     void updateStoreIdByGId(int good_id,int storeId);
+
+    void updateResIdByGId(int id,int receipt_id);
 
 }

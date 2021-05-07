@@ -23,7 +23,8 @@
         <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
 
         <script type="text/html" id="currentTableBar">
-            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">C h e c k</a>
+            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-edit" lay-event="edit">C h e c k</a>
+            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">D e n y</a>
         </script>
 
     </div>
@@ -67,9 +68,8 @@
 
         table.on('tool(currentTableFilter)', function (obj) {
             var data = obj.data;
-            if (obj.event === 'delete') {
+            if (obj.event === 'edit') {
                 layer.confirm('是否验货通过', function (index) {
-
                     $.ajax({
                         url:'http://localhost:8080/receipts/updateCheckingByGoodResId?Id='+data['id'],
                         method:'post',
@@ -81,10 +81,25 @@
                             }, 'data');
                         },
                         error: function(XMLHttpRequest, textStatus, errorThrown) {
-
                         }
                     }) ;
-
+                    return false;
+                });
+            }else if (obj.event === 'delete') {
+                layer.confirm('是否验货不合格', function (index) {
+                    $.ajax({
+                        url:'http://localhost:8080/receipts/deleteByGoodResId?Id='+data['id'],
+                        method:'post',
+                        data:data.field,
+                        dataType:'JSON',
+                        success:function(res){
+                            layer.msg("验货成功!");
+                            table.reload('currentTableId', {
+                            }, 'data');
+                        },
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        }
+                    }) ;
                     return false;
                 });
             }

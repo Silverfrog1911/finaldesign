@@ -54,8 +54,9 @@
                 title: '确认提交'
             }, function () {
                 $.ajax({
-                    url:'http://localhost:8080/goods/insertWORK1',//?name='+$('#name').val()+'&amount='+$('#amount').val()
+                    url:'http://localhost:8080/goods/insertWORKStatus?name='+$('#name').val()+'&amount='+$('#amount').val(),
                     method:'post',
+                    contentType :'application/json',
                     data:{
                         name: $('#name').val(),
                         amount: $('#amount').val()
@@ -78,9 +79,9 @@
                 parent.location.reload();
                 var iframeIndex = parent.layer.getFrameIndex(window.name);
                 parent.layer.close(iframeIndex);
-
+                return false;
             });
-            return false;
+            //return false;
         });
 
     });

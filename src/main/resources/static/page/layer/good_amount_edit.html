@@ -20,14 +20,14 @@
     <div class="layui-form-item">
         <label class="layui-form-label required">货柜ID</label>
         <div class="layui-input-block">
-            <input type="text" id="name" lay-verify="required" lay-reqtext="货柜ID不能为空" placeholder="请输入货柜ID" value="" class="layui-input">
+            <input type="text" id="goodPosId" lay-verify="required" lay-reqtext="货柜ID不能为空" placeholder="请输入货柜ID" value="" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label required">取走货物数量</label>
         <div class="layui-input-block">
-            <input type="text" id="amount" lay-verify="required" lay-reqtext="取走货物数量不能为空" placeholder="请输入取走货物数量" value="" class="layui-input">
+            <input type="text" id="capacity" lay-verify="required" lay-reqtext="取走货物数量不能为空" placeholder="请输入取走货物数量" value="" class="layui-input">
         </div>
     </div>
 
@@ -54,15 +54,15 @@
                 title: '确认提交'
             }, function () {
                 $.ajax({
-                    url:'http://localhost:8080/goodsPos/updatePosInfos//?goodPosId='+$('#goodPosId').val()+'&capacity='+$('#capacity').val(),
+                    url:'http://localhost:8080/goodsPos/updatePosInfos?goodPosId='+$('#goodPosId').val()+'&capacity='+$('#capacity').val(),
                     method:'post',
+                    contentType :'application/json',
                     data:{
                         goodPosId: $('#goodPosId').val(),
                         capacity: $('#capacity').val()
                     },
                     async: true,
                     dataType:'JSON',
-                    headers : {'Content-Type' : 'application/json;charset=utf-8'},
                     success:function(data){
 
                     },

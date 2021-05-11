@@ -40,7 +40,7 @@
     select
     *
     from xd_receipts
-    where `status` = 'RECEVIED'
+    where `status` = 'RECEIVED'
   </select>
   <select id="selectResByGoodId" resultMap="BaseResultMap">
     select

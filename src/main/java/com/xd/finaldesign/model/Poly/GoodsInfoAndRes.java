@@ -38,6 +38,9 @@ public class GoodsInfoAndRes {
 
     private Date utcModified;
 
+    private Integer shouldAmount;
+    private String receiver;
+
     private static final long serialVersionUID = 1L;
 }
 

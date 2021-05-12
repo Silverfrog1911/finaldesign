@@ -1,15 +1,18 @@
 package com.xd.finaldesign.controller;
 
 import com.xd.finaldesign.model.XdGoods;
+import com.xd.finaldesign.model.XdGoodsDetail;
 import com.xd.finaldesign.model.XdReceipts;
 import com.xd.finaldesign.service.xd_goods.XdGoodsSer;
 import com.xd.finaldesign.service.xd_goods_pos.XdGoodsPosSer;
 import com.xd.finaldesign.service.xd_receipts.XdReceiptsSer;
 import com.xd.finaldesign.util.ResultUtils;
 import com.xd.finaldesign.util.ResultVO;
-import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/goods")
@@ -45,13 +48,22 @@ public class goodsController {
     /**
      * 收货授权=插入数据库中收货单表新的一条数据（status=WORK）
      */
-    @PostMapping(value = "/insertWORKStatus")
-    private ResultVO insertWORK(XdGoods xdGoods){
-
+    @PostMapping("/insertWORKStatus")
+    private ResultVO insertWORK(@RequestParam("name") String name,@RequestParam("amount") Integer amount,@RequestParam("shouldAmount") Integer shouldAmount,@RequestParam("receiver") String receiver){
+        XdGoods xdGoods=new XdGoods();
+        xdGoods.setName(name);
+        xdGoods.setAmount(amount);
         System.out.println("In USE !");
         System.out.println("xdGoods : "+xdGoods.getName());
 
+
         xdGoodsSer.insertSelective(xdGoods);//插入基本的货物信息
+        XdGoodsDetail xdGoodsDetail=new XdGoodsDetail();
+        xdGoodsDetail.setShouldAmount(shouldAmount);
+        xdGoodsDetail.setReceiver(receiver);
+        xdGoodsDetail.setGoodsId(xdGoods.getId().intValue());
+
+        xdGoodsSer.insertDetail(xdGoodsDetail);
 
         int id = Math.toIntExact(xdGoodsSer.selectGoodByGoodresName(xdGoods.getName()).getId());
         xdGoodsSer.updateStoreIdByGId(id ,id);

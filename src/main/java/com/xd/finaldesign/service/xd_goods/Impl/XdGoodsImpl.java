@@ -1,9 +1,11 @@
 package com.xd.finaldesign.service.xd_goods.Impl;
 
 import com.xd.finaldesign.mapper.XdGoodsDao;
+import com.xd.finaldesign.mapper.XdGoodsDetailDao;
 import com.xd.finaldesign.mapper.XdGoodsPosDao;
 import com.xd.finaldesign.mapper.XdReceiptsDao;
 import com.xd.finaldesign.model.XdGoods;
+import com.xd.finaldesign.model.XdGoodsDetail;
 import com.xd.finaldesign.service.xd_goods.XdGoodsSer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,9 @@ public class XdGoodsImpl implements XdGoodsSer {
 
     @Autowired
     private XdGoodsDao xdGoodsDao;
+
+    @Autowired
+    private XdGoodsDetailDao xdGoodsDetailDao;
 
     @Autowired
     private XdGoodsPosDao xdGoodsPosDao;
@@ -77,5 +82,13 @@ public class XdGoodsImpl implements XdGoodsSer {
         xdGoodsDao.updateResIdByGId(id,receipt_id);
     }
 
+    @Override
+    public int insertDetail(XdGoodsDetail xdGoodsDetail) {
+        return xdGoodsDetailDao.insert(xdGoodsDetail);
+    }
 
+    @Override
+    public XdGoodsDetail selectDetail(int good_id) {
+        return xdGoodsDetailDao.selectByGid(good_id);
+    }
 }

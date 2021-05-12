@@ -52,7 +52,9 @@
                 {field: 'name', width: 120, title: '货物名称'},
                 {field: 'status', width: 120, title: '收货单状态'},
                 {field: 'goodAmount', width: 120, title: '货物数量'},
-                {field: 'receiptsDate', width: 120, title: '收货日期'}
+                {field: 'receiptsDate', width: 120, title: '收货日期'},
+                {field: 'shouldAmount', width: 120, title: '应收数量'},
+                {field: 'receiver', width: 120, title: '收货人'}
             ]],
             limits: [10, 15, 20, 25, 50, 100],
             limit: 15,
@@ -68,7 +70,7 @@
                 shade: 0.2,
                 maxmin:true,
                 shadeClose: true,
-                area: ['40%', '40%'],
+                area: ['500px', '400px'],
                 content: '../../page/layer/good_info_add.html',
             });
             $(window).on("resize", function () {

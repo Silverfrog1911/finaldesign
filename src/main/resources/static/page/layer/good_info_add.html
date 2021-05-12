@@ -25,9 +25,22 @@
     </div>
 
     <div class="layui-form-item">
-        <label class="layui-form-label required">货物数量</label>
+        <label class="layui-form-label required">应收数量</label>
+        <div class="layui-input-block">
+            <input type="text" id="shouldAmount" lay-verify="required" lay-reqtext="货物数量不能为空" placeholder="请输入货物数量" value="" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label required">实收数量</label>
         <div class="layui-input-block">
             <input type="text" id="amount" lay-verify="required" lay-reqtext="货物数量不能为空" placeholder="请输入货物数量" value="" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label required">收货人</label>
+        <div class="layui-input-block">
+            <input type="text" id="receiver" lay-verify="required" lay-reqtext="货物数量不能为空" placeholder="请输入货物数量" value="" class="layui-input">
         </div>
     </div>
 
@@ -54,17 +67,20 @@
                 title: '确认提交'
             }, function () {
                 $.ajax({
-                    url:'http://localhost:8080/goods/insertWORKStatus?name='+$('#name').val()+'&amount='+$('#amount').val(),
+                    // url:'http://localhost:8080/goods/insertWORKStatus',
+                     url:'http://localhost:8080/goods/insertWORKStatus?name='+$('#name').val()+'&amount='+$('#amount').val()+'&shouldAmount='+$("#shouldAmount").val()+'&receiver='+$("#receiver").val(),
                     method:'post',
                     contentType :'application/json',
                     data:{
                         name: $('#name').val(),
-                        amount: $('#amount').val()
+                        amount: $('#amount').val(),
+                        shouldAmount:$("#shouldAmount").val(),
+                        receiver:$("#receiver").val()
                     },
-                    async: true,
+                    // async: true,
                     dataType:'JSON',
                     success:function(res){
-
+                        console.log(res);
                     },
                     error: function(XMLHttpRequest, textStatus, errorThrown) {
                         console.log("----"+textStatus)

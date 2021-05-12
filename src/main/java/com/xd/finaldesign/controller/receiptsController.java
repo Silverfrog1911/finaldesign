@@ -59,6 +59,9 @@ public class receiptsController {
             goodsInfoAndRes.setStatus(xdReceiptsSer.selectAllReceipts().get(i).getStatus());
             goodsInfoAndRes.setUtcCreate(xdReceiptsSer.selectAllReceipts().get(i).getUtcCreate());
             goodsInfoAndRes.setUtcModified(xdReceiptsSer.selectAllReceipts().get(i).getUtcModified());
+            goodsInfoAndRes.setShouldAmount(xdGoodsSer.selectDetail(xdReceiptsSer.selectAllReceipts().get(i).getGoodId()).getShouldAmount());
+            goodsInfoAndRes.setReceiver(xdGoodsSer.selectDetail(xdReceiptsSer.selectAllReceipts().get(i).getGoodId()).getReceiver());
+            System.out.println(goodsInfoAndRes);
             goodsInfoAndResList.add(goodsInfoAndRes);
         }
 

@@ -70,7 +70,8 @@ public class goodsPosController {
     @PostMapping("/updatePosInfos")
     private ResultVO updatePosInfos(int goodPosId,int capacity){
         xdGoodsPosSer.updatePosInfos(goodPosId,shelfCap-capacity);
-        if(capacity == 20){
+
+        if(capacity == 20 && (shelfCap-capacity) == 0){
             xdGoodsPosSer.deleteByPrimaryKey((long) goodPosId);
         }
         if(capacity > 20){

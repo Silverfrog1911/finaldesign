@@ -41,6 +41,8 @@ public class GoodsInfoAndRes {
     private Integer shouldAmount;
     private String receiver;
 
+    private Integer orderId;
+
     private static final long serialVersionUID = 1L;
 }
 

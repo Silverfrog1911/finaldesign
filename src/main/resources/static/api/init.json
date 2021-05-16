@@ -24,6 +24,12 @@
           "target": "_self"
         },
         {
+          "title": "收货授权展示",
+          "href": "page/table/ResGrantPrivShow.html",
+          "icon": "fa fa-home",
+          "target": "_self"
+        },
+        {
           "title": "收货验货",
           "href": "page/table/GoodCheck.html",
           "icon": "fa fa-window-maximize",

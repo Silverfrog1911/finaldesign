@@ -69,14 +69,27 @@ public class goodsPosController {
      */
     @PostMapping("/updatePosInfos")
     private ResultVO updatePosInfos(int goodPosId,int capacity){
-        xdGoodsPosSer.updatePosInfos(goodPosId,shelfCap-capacity);
 
-        if(capacity == 20 && (shelfCap-capacity) == 0){
+        //shelfCap-capacity
+//        if(capacity < 20){
+//
+//            //return ResultUtils.success("Error !");
+//        }
+
+
+        if(capacity == 20){
             xdGoodsPosSer.deleteByPrimaryKey((long) goodPosId);
+            return ResultUtils.success("delete success!");
+        }
+        if(xdGoodsPosSer.selectByPrimaryKey((long)goodPosId).getCapacity()-capacity <= 0){
+            xdGoodsPosSer.deleteByPrimaryKey((long) goodPosId);
+            return ResultUtils.success("delete success!");
         }
         if(capacity > 20){
             return ResultUtils.success("Error !");
         }
+        xdGoodsPosSer.updatePosInfos(goodPosId,xdGoodsPosSer.selectByPrimaryKey((long)goodPosId).getCapacity()-capacity);
+
         return ResultUtils.success("update success!");
     }
 

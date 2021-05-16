@@ -22,5 +22,6 @@ public interface XdGoodsPosSer {
 
     void deleteByGoodId(int good_id);
 
+    XdGoodsPos selectByPrimaryKey(Long goodsPosId);
 
 }

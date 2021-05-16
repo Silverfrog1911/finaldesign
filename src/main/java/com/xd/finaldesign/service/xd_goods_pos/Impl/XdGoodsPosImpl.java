@@ -86,5 +86,9 @@ public class XdGoodsPosImpl implements XdGoodsPosSer {
         xdGoodsPosDao.deleteByGoodId(good_id);
     }
 
+    @Override
+    public XdGoodsPos selectByPrimaryKey(Long goodsPosId){
+        return xdGoodsPosDao.selectByPrimaryKey(goodsPosId);
+    }
 
 }
